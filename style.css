@@ -1,0 +1,138 @@
+/* ==========================================
+   1. GLOBAL STYLES & MOBILE-FIRST VIEW
+   ========================================== */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 15px;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  color: #222222;
+}
+
+header h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Mobile View Grid: 1 Column with 10px gap */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+figure {
+  margin: 0;
+  padding: 10px;
+  background-color: #ffffff;
+  border: 2px solid #cccccc;
+  box-sizing: border-box;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+figcaption p {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+footer {
+  text-align: center;
+  margin-top: 30px;
+  padding: 10px;
+}
+
+
+/* ==========================================
+   2. MEDIA QUERY #1: TABLET VIEW (772px)
+   ========================================== */
+@media screen and (min-width: 772px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  figure {
+    border-radius: 20px;
+  }
+
+  /* Make images circular inside the figures */
+  figure img {
+    border-radius: 50%;
+  }
+
+  /* Last figure spans both columns */
+  figure:last-child {
+    grid-column: span 2;
+  }
+}
+
+
+/* ==========================================
+   3. MEDIA QUERY #2: LARGE SCREEN VIEW (992px)
+   ========================================== */
+@media screen and (min-width: 992px) {
+  .grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  /* Remove border radius from all figures and images */
+  figure, figure img {
+    border-radius: 0;
+  }
+
+  /* Reset last child span if needed */
+  figure:last-child {
+    grid-column: auto;
+  }
+
+  /* Every 3rd figure takes up two columns */
+  figure:nth-child(3n) {
+    grid-column: span 2;
+  }
+}
+
+
+/* ==========================================
+   4. MEDIA QUERY #3: PREFERS REDUCED MOTION
+   ========================================== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  figure {
+    transition: none;
+  }
+}
+
+
+/* ==========================================
+   5. MEDIA QUERY #4: DARK COLOR SCHEME
+   ========================================== */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #121212;
+    color: #ffffff;
+  }
+
+  figure {
+    background-color: #242424; /* Dark color for figure background */
+    color: #ffffcc;            /* Lighter/yellow-ish font color */
+    border-color: #000000;    /* Black border color */
+  }
+
+  figcaption p {
+    color: #ffffcc; /* Ensures contrast in caption text */
+  }
+}
